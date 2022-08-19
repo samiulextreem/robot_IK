@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
+
+
+    <link name="base">
+  		<visual>
+          <origin xyz="0 0 0.1" rpy="0 0 0"/>
+  			<geometry>
+          		<box size=".4 .4 .4"/>
+        	</geometry>
+  		</visual>
+    </link>
+
+
+    <link name="l1">
+        <visual>
+          	<origin xyz="0 0 .125" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length=".20" radius="0.1" />
+            </geometry>
+            <material name="red">
+                <color rgba=".5 .5 .5 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+	<link name="l2">
+        <visual>
+          	<origin xyz="0 0 .45" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length=".9" radius="0.1" />
+            </geometry>
+            <material name="redd">
+                <color rgba=".5 .6 .5 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+
+	<link name="l3">
+        <visual>
+          	<origin xyz="0 0 .45" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length=".9" radius="0.1" />
+            </geometry>
+            <material name="redd">
+                <color rgba=".5 .5 .6 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+	<link name="l4">
+        <visual>
+          	<origin xyz="0 0 .1" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length=".2" radius="0.1" />
+            </geometry>
+          <material name="rd">
+                <color rgba=".4 .5 .4 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+	<link name="hand">
+        <visual>
+          	<origin xyz="0 0 .1" rpy="0 0 0"/>
+            <geometry>
+                <box size = ".15 .15 .15" />
+            </geometry>
+          	<material name="rfd">
+                <color rgba=".2 .2 0 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+    <link name="finger">
+        <visual>
+          	<origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size = ".05 .05 .05" />
+            </geometry>
+          	<material name="rfdd">
+                <color rgba=".2 .2 1 1.0"/>
+            </material>
+        </visual>
+    </link>
+
+    <joint name="base_to_l1" type="revolute">
+        <parent link="base" />
+        <child link="l1" />
+        <origin  rpy="0 0 0" xyz="0 0 .3" />
+      	<axis rpy= "0 0 0" xyz= "0 0 1"/>
+        <limit effort = "10" velocity = "3.1" lower="-3.7" upper="3.7"/>
+      
+    </joint>
+
+ 	<joint name="l1_to_l2" type="revolute">
+        <parent link="l1" />
+        <child link="l2" />
+        <origin  rpy="0 0 0" xyz="0 0 .20" />
+      	<axis rpy= "0 0 0" xyz= "0 1 0"/>
+        <limit effort = "10" velocity = "3.1" lower="0" upper="1.5"/>
+      
+    </joint>
+
+
+ 	<joint name="l2_to_l3" type="revolute">
+        <parent link="l2" />
+        <child link="l3" />
+        <origin  rpy="0 0 0" xyz="0 0 .9" />
+      	<axis rpy= "0 0 0" xyz= "0 1 0"/>
+        <limit effort = "10" velocity = "3.1" lower="0" upper="3.5"/>
+      
+    </joint>
+
+	<joint name="l3_to_l4" type="revolute">
+        <parent link="l3" />
+        <child link="l4" />
+        <origin  rpy="0 0 0" xyz="0 0 .9" />
+      	<axis rpy= "0 0 0" xyz= "0 1 0"/>
+        <limit effort = "10" velocity = "3.1" lower="-1.50" upper="1.5"/>
+      
+    </joint>
+
+
+	<joint name="l4_to_hand" type="fixed">
+        <parent link="l4" />
+        <child link="hand" />
+        <origin  rpy="0 0 0" xyz="0 0 .2" />
+      	<axis rpy= "0 0 0" xyz= "0 0 1"/>
+        <limit effort = "10" velocity = "3.1" lower="-3.7" upper="3.7"/>
+      
+    </joint>
+
+    <joint name="hand_to_finger" type="fixed">
+        <parent link="hand" />
+        <child link="finger" />
+        <origin  rpy="0 0 0" xyz="0 0 .2" />
+      	<axis rpy= "0 0 0" xyz= "0 0 1"/>
+      
+    </joint>
+
+ 
+
+</robot>
